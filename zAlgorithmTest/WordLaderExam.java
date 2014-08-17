@@ -28,37 +28,75 @@ public class WordLaderExam {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
+	}
+
+	/*public static void WordLader(String start, String end, String[] dict) {
+		HashSet<Character> dictChar = new HashSet<Character>();
+		dictChar = dictCharAdd(dict, dictChar, true);
+		Character[] dictarry = dictChar.toArray();
+		while (true) {
+			char[] startarray = start.toCharArray();
+			for (int i = 0; i < startarray.length; i++) {
+				for (int j = 0; j < dictChar.size(); j++) {
+					startarray[i] = dictChar.toArray()[j];
+				}
+			}
+		}
 		
+
+	}*/
+
+	public static HashSet<Character> dictCharAdd(String[] dict,
+			HashSet<Character> dictChar, boolean delete) {
+		// true
+		if (dict.length > 0 && delete) {
+			dictChar.clear();
+		}
+		// add the characters in dict to dictChar
+		for (String string : dict) {
+			char[] chartemp = string.toCharArray();
+			for (char c : chartemp) {
+				dictChar.add(Character.valueOf(c));
+			}
+		}
+		
+		return dictChar;
 	}
-	
+
+	/*
+	 * above is my own
+	 * 
+	 * sample answer
+	 */
 	public static class Solution {
-	    public int ladderLength(String start, String end, HashSet<String> dict) {
-	 
-	        int len=0;
-	        HashSet<String> visited = new HashSet<String>();
-	 
-	        for(int i=0; i<start.length(); i++){
-	            char[] startArr = start.toCharArray();
-	 
-	            for(char c='a'; c<='z'; c++){
-	                if(c==start.toCharArray()[i]){
-	                    continue;
-	                }
-	 
-	                startArr[i] = c;
-	                String temp = new String(startArr);
-	                if(dict.contains(temp)){
-	                    len++;
-	                    start = temp;
-	                    if(temp.equals(end)){
-	                        return len;
-	                    }
-	                }
-	            }
-	        }
-	 
-	        return len;
-	    }
+		public int ladderLength(String start, String end, HashSet<String> dict) {
+
+			int len = 0;
+			HashSet<String> visited = new HashSet<String>();
+
+			for (int i = 0; i < start.length(); i++) {
+				char[] startArr = start.toCharArray();
+
+				for (char c = 'a'; c <= 'z'; c++) {
+					if (c == start.toCharArray()[i]) {
+						continue;
+					}
+
+					startArr[i] = c;
+					String temp = new String(startArr);
+					if (dict.contains(temp)) {
+						len++;
+						start = temp;
+						if (temp.equals(end)) {
+							return len;
+						}
+					}
+				}
+			}
+
+			return len;
+		}
 	}
-	
+
 }
